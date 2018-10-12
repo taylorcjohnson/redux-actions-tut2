@@ -1,4 +1,13 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from './reducers';
 
-export default () => createStore(reducers);
+const middlewares = [
+];
+export default () => createStore(
+  reducers,
+  compose(
+    applyMiddleware(...middlewares),
+    window.devToolsExtension ?
+      window.devToolsExtension() : f => f,
+  ),
+);
